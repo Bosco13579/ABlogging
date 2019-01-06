@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ABlogging.Models;
 
 namespace ABlogging.Data
 {
@@ -12,5 +13,7 @@ namespace ABlogging.Data
             : base(options)
         {
         }
+        public DbSet<ABlogging.Models.Post> Post { get; set; }
+        public DbSet<ABlogging.Models.Comment> Comment { get; set; }
     }
 }

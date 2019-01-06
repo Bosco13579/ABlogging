@@ -4,41 +4,22 @@ using ABlogging.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ABlogging.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190106145611_PostController")]
+    partial class PostController
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ABlogging.Models.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CommentAuthor");
-
-                    b.Property<string>("CommentContent");
-
-                    b.Property<DateTime>("CommentDate");
-
-                    b.Property<int?>("ThePostId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ThePostId");
-
-                    b.ToTable("Comment");
-                });
 
             modelBuilder.Entity("ABlogging.Models.Post", b =>
                 {
@@ -222,13 +203,6 @@ namespace ABlogging.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("ABlogging.Models.Comment", b =>
-                {
-                    b.HasOne("ABlogging.Models.Post", "ThePost")
-                        .WithMany()
-                        .HasForeignKey("ThePostId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
