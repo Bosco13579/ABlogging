@@ -42,6 +42,10 @@ namespace ABlogging
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //added
+            services.AddIdentity<Models.ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -63,9 +67,12 @@ namespace ABlogging
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseAuthentication();
             app.UseMvc();
+            app.UseAuthentication();
+
+
+
+
 
             app.UseMvc(routes =>
             {
